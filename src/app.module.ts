@@ -6,9 +6,23 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { Configuration } from './config/config.keys';
 import { DatabaseModule } from './database/database.module';
+import { MailModule } from './modules/mail/mail.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 
 @Module({
-  imports: [UserModule, ConfigModule, DatabaseModule],
+  imports: [
+    UserModule,
+    ConfigModule,
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+      definitions: { path: join(process.cwd(), 'src/graphql.ts') },
+    }),
+    DatabaseModule,
+    MailModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
