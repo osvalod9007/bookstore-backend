@@ -17,7 +17,15 @@ import { join } from 'path';
     ConfigModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      definitions: { path: join(process.cwd(), 'src/graphql.ts') },
+      context: ({ req }) => ({ headers: req.headers }),
+      debug: true,
+      playground: true,
+      installSubscriptionHandlers: true,
+      definitions: {
+        path: join(process.cwd(), 'src/graphql.ts'),
+        outputAs: 'class',
+      },
+      include: [UserModule],
     }),
     DatabaseModule,
     MailModule,

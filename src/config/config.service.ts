@@ -20,10 +20,7 @@ export class ConfigService {
     } else {
       this.envConfig = {
         PORT: process.env.PORT,
-        HOST: process.env.HOST,
-        USERNAME: process.env.USERNAME,
-        PASSWORD: process.env.PASSWORD,
-        DATABASE: process.env.DATABASE,
+        URL: process.env.URL,
         JWT_SECRET: process.env.JWT_SECRET,
         DOCUMENTATION_TITLE: process.env.DOCUMENTATION_TITLE,
         DOCUMENTATION_DESCRIPTION: process.env.DOCUMENTATION_DESCRIPTION,

@@ -1,4 +1,10 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
+import {
+  Entity,
+  ObjectID,
+  ObjectIdColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm';
 @Entity('users')
 export class User {
   @ObjectIdColumn()
@@ -7,6 +13,8 @@ export class User {
   firstName: string;
   @Column()
   lastName: string;
+  @CreateDateColumn({ type: 'timestamp', name: 'createdAt' })
+  createAt: Date;
 
   constructor(user?: Partial<User>) {
     Object.assign(this, user);

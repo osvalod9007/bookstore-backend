@@ -1,9 +1,30 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  users: [User]!
+  user(id: ID!): User
+}
+
+type Mutation {
+  userAdd(user: UserEditable): User
+  userEdit(id: ID!, user: UserEditable): User
+  usersRemove(ids: [ID!]!): [User]
+  userRemove(id: ID!): User
+}
+
+input UserEditable {
+  id: ID
+  firstName: String!
+  lastName: String!
+}
+
 type User {
   id: ID!
   firstName: String
   lastName: String
 }
-type Query {
-  users: [User]!
-  user(id: ID!): User
-}
+
+

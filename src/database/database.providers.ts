@@ -10,13 +10,15 @@ export const databaseProviders = [
     inject: [ConfigService],
     async useFactory(config: ConfigService) {
       return {
-        type: 'mongodb' as 'mongodb',
-        host: config.get(Configuration.HOST),
-        database: config.get(Configuration.DATABASE),
+        type: 'mongodb',
+        url: config.get(Configuration.URL),
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/migrations/*{.ts,.js}'],
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        synchronize: true,
+        logging: true,
+        ssl: true
       } as ConnectionOptions;
     },
   }),
